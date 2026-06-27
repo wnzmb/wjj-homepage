@@ -10,38 +10,38 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
 </head>
 <body>
-    <canvas id="starsCanvas"></canvas>
-    <canvas id="clickEffect"></canvas>
+    <div class="bg-layer">
+        <canvas id="starsCanvas"></canvas>
+        <canvas id="clickEffect"></canvas>
+    </div>
     
-    <div class="container">
-        <div class="card" id="card">
-            <div class="avatar">W</div>
-            <h1>WJJ</h1>
-            <p class="greeting" id="greeting"></p>
-            <p class="tagline" id="typewriter"></p>
-            
-            <div class="divider"></div>
-            
-            <p class="about">
-                数据科学专业 · 对技术和创造充满热情
-            </p>
-            
-            <div class="links">
-                <a href="https://github.com/wnzmb" target="_blank" class="link-btn github">
-                    <span class="icon">⌘</span> GitHub
-                </a>
-                <a href="https://blog.wjjblog.ccwu.cc" target="_blank" class="link-btn blog">
-                    <span class="icon">📝</span> Blog
-                </a>
-                <a href="mailto:snoopy363924@gmail.com" class="link-btn contact">
-                    <span class="icon">✉</span> Contact
-                </a>
-            </div>
-            
-            <div class="footer">
-                <p class="status">🟢 Online</p>
-                <p class="counter">你是第 <span id="visitor-count">-</span> 位访客</p>
-            </div>
+    <div class="card" id="card">
+        <div class="avatar">W</div>
+        <h1>WJJ</h1>
+        <p class="greeting" id="greeting"></p>
+        <p class="tagline" id="typewriter"></p>
+        
+        <div class="divider"></div>
+        
+        <p class="about">
+            数据科学专业 · 对技术和创造充满热情
+        </p>
+        
+        <div class="links">
+            <a href="https://github.com/wnzmb" target="_blank" class="link-btn github">
+                <span class="icon">⌘</span> GitHub
+            </a>
+            <a href="https://blog.wjjblog.ccwu.cc" target="_blank" class="link-btn blog">
+                <span class="icon">📝</span> Blog
+            </a>
+            <a href="mailto:snoopy363924@gmail.com" class="link-btn contact">
+                <span class="icon">✉</span> Contact
+            </a>
+        </div>
+        
+        <div class="footer">
+            <p class="status">🟢 Online</p>
+            <p class="counter">你是第 <span id="visitor-count">-</span> 位访客</p>
         </div>
     </div>
     
@@ -95,7 +95,6 @@
         
         const canvas = document.getElementById('clickEffect');
         const ctx = canvas.getContext('2d');
-        
         const starsCanvas = document.getElementById('starsCanvas');
         const starsCtx = starsCanvas.getContext('2d');
         
@@ -109,9 +108,7 @@
         window.addEventListener('resize', resizeCanvas);
         
         const stars = [];
-        const starCount = 150;
-        
-        for (let i = 0; i < starCount; i++) {
+        for (let i = 0; i < 150; i++) {
             stars.push({
                 x: Math.random() * window.innerWidth,
                 y: Math.random() * window.innerHeight,
@@ -123,24 +120,19 @@
         
         function animateStars() {
             starsCtx.clearRect(0, 0, starsCanvas.width, starsCanvas.height);
-            
             for (let star of stars) {
                 star.y += star.speed;
-                
                 if (star.y > starsCanvas.height) {
                     star.y = 0;
                     star.x = Math.random() * starsCanvas.width;
                 }
-                
                 starsCtx.beginPath();
                 starsCtx.arc(star.x, star.y, star.size, 0, Math.PI * 2);
                 starsCtx.fillStyle = `rgba(255, 255, 255, ${star.opacity})`;
                 starsCtx.fill();
             }
-            
             requestAnimationFrame(animateStars);
         }
-        
         animateStars();
         
         const particles = [];
@@ -161,7 +153,6 @@
         
         function animateParticles() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-            
             for (let i = particles.length - 1; i >= 0; i--) {
                 const p = particles[i];
                 ctx.globalAlpha = p.life;
@@ -169,19 +160,15 @@
                 ctx.beginPath();
                 ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
                 ctx.fill();
-                
                 p.x += p.vx;
                 p.y += p.vy;
                 p.vy += 0.2;
                 p.life -= 0.02;
-                
                 if (p.life <= 0) particles.splice(i, 1);
             }
-            
             ctx.globalAlpha = 1;
             requestAnimationFrame(animateParticles);
         }
-        
         animateParticles();
         document.addEventListener('click', (e) => createParticles(e.clientX, e.clientY));
         
@@ -194,7 +181,6 @@
                 document.getElementById('visitor-count').textContent = '-';
             }
         }
-
         loadVisitorCount();
     </script>
 </body>
