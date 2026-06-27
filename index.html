@@ -4,29 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WJJ | Personal Page</title>
-    <link rel="stylesheet" href="style.css?v=3">
+    <link rel="stylesheet" href="style.css?v=4">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="bg-layer">
-        <canvas id="starsCanvas"></canvas>
-        <canvas id="clickEffect"></canvas>
-    </div>
-    
+    <canvas id="starsCanvas"></canvas>
+    <canvas id="clickEffect"></canvas>
+
     <div class="card" id="card">
         <div class="avatar">W</div>
         <h1>WJJ</h1>
         <p class="greeting" id="greeting"></p>
         <p class="tagline" id="typewriter"></p>
-        
+
         <div class="divider"></div>
-        
+
         <p class="about">
             数据科学专业 · 对技术和创造充满热情
         </p>
-        
+
         <div class="links">
             <a href="https://github.com/wnzmb" target="_blank" class="link-btn github">
                 <span class="icon">⌘</span> GitHub
@@ -38,13 +36,13 @@
                 <span class="icon">✉</span> Contact
             </a>
         </div>
-        
+
         <div class="footer">
             <p class="status">🟢 Online</p>
             <p class="counter">你是第 <span id="visitor-count">-</span> 位访客</p>
         </div>
     </div>
-    
+
     <script>
         const greetingEl = document.getElementById('greeting');
         const typewriterEl = document.getElementById('typewriter');
@@ -76,9 +74,7 @@
             } else {
                 typewriterEl.textContent = current.substring(0, charIndex++);
             }
-            
             let delay = isDeleting ? 50 : 100;
-            
             if (!isDeleting && charIndex === current.length + 1) {
                 delay = 2000;
                 isDeleting = true;
@@ -87,10 +83,8 @@
                 textIndex = (textIndex + 1) % texts.length;
                 delay = 500;
             }
-            
             setTimeout(typeWriter, delay);
         }
-        
         typeWriter();
         
         const canvas = document.getElementById('clickEffect');
@@ -99,10 +93,12 @@
         const starsCtx = starsCanvas.getContext('2d');
         
         function resizeCanvas() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-            starsCanvas.width = window.innerWidth;
-            starsCanvas.height = window.innerHeight;
+            const w = window.innerWidth;
+            const h = window.innerHeight;
+            canvas.width = w;
+            canvas.height = h;
+            starsCanvas.width = w;
+            starsCanvas.height = h;
         }
         resizeCanvas();
         window.addEventListener('resize', resizeCanvas);
@@ -136,7 +132,6 @@
         animateStars();
         
         const particles = [];
-        
         function createParticles(x, y) {
             const colors = ['#3b82f6', '#8b5cf6', '#ec4899', '#f59e0b', '#10b981'];
             for (let i = 0; i < 12; i++) {
@@ -150,7 +145,6 @@
                 });
             }
         }
-        
         function animateParticles() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             for (let i = particles.length - 1; i >= 0; i--) {
