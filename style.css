@@ -12,7 +12,6 @@ body {
     background: #0a0a0a;
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     color: #ffffff;
-    overflow: hidden;
 }
 
 #starsCanvas {
