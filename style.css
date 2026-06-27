@@ -116,6 +116,9 @@ h1 {
     font-size: 14px;
     font-weight: 400;
     transition: all 0.3s ease;
+    cursor: pointer;
+    position: relative;
+    z-index: 20;
 }
 
 .link-btn:hover {
@@ -141,8 +144,17 @@ h1 {
     margin-top: 40px;
     padding-top: 24px;
     border-top: 1px solid #1f1f1f;
-    color: #444;
-    font-size: 12px;
+}
+
+.footer .status {
+    color: #10b981;
+    font-size: 13px;
+    margin-bottom: 8px;
+}
+
+.footer .counter {
+    color: #888;
+    font-size: 14px;
 }
 
 #clickEffect {
