@@ -12,10 +12,11 @@ body {
     background: #0a0a0a;
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     color: #ffffff;
+    position: relative;
 }
 
 #starsCanvas {
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 0;
     width: 100%;
@@ -172,7 +173,7 @@ h1 {
 }
 
 #clickEffect {
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 0;
     width: 100%;
