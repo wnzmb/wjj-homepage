@@ -49,23 +49,27 @@
     <script>
         const greetingEl = document.getElementById('greeting');
         const typewriterEl = document.getElementById('typewriter');
-        
-        const greetings = {
-            morning: '早上好',
-            afternoon: '下午好',
-            evening: '晚上好',
-            night: '夜深了'
+
+        const timeThemes = {
+            night:    { greeting: '夜深了', bg: ['#0a0a1a', '#1a0a2e'] },
+            morning:  { greeting: '早上好', bg: ['#ffecd2', '#fcb69f'] },
+            afternoon:{ greeting: '下午好', bg: ['#a1c4fd', '#c2e9fb'] },
+            evening:  { greeting: '晚上好', bg: ['#fa709a', '#fee140'] },
+            dusk:     { greeting: '晚上好', bg: ['#2d1b69', '#11998e'] },
         };
-        
-        function getGreeting() {
+
+        function getTimeTheme() {
             const hour = new Date().getHours();
-            if (hour < 6) return greetings.night;
-            if (hour < 12) return greetings.morning;
-            if (hour < 18) return greetings.afternoon;
-            return greetings.evening;
+            if (hour >= 6 && hour < 10) return timeThemes.morning;
+            if (hour >= 10 && hour < 16) return timeThemes.afternoon;
+            if (hour >= 16 && hour < 19) return timeThemes.evening;
+            if (hour >= 19 && hour < 22) return timeThemes.dusk;
+            return timeThemes.night;
         }
-        
-        greetingEl.textContent = getGreeting() + '，访客 👋';
+
+        const theme = getTimeTheme();
+        document.body.style.background = `linear-gradient(135deg, ${theme.bg[0]}, ${theme.bg[1]})`;
+        greetingEl.textContent = theme.greeting + '，访客 👋';
         
         const texts = ['Data Science & Development', 'Building something cool...', 'Always learning.'];
         let textIndex = 0, charIndex = 0, isDeleting = false;
