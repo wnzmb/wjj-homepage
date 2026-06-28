@@ -70,6 +70,9 @@
         const theme = getTimeTheme();
         document.body.style.background = `linear-gradient(135deg, ${theme.bg[0]}, ${theme.bg[1]})`;
         greetingEl.textContent = theme.greeting + '，访客 👋';
+
+        const isLightTheme = (hour >= 6 && hour < 22);
+        const starColor = isLightTheme ? 'rgba(0, 0, 0, 0.15)' : 'rgba(255, 255, 255, 1)';
         
         const texts = ['Data Science & Development', 'Building something cool...', 'Always learning.'];
         let textIndex = 0, charIndex = 0, isDeleting = false;
@@ -131,7 +134,7 @@
                 }
                 starsCtx.beginPath();
                 starsCtx.arc(star.x, star.y, star.size, 0, Math.PI * 2);
-                starsCtx.fillStyle = `rgba(255, 255, 255, ${star.opacity})`;
+                starsCtx.fillStyle = isLightTheme ? `rgba(0, 0, 0, ${star.opacity * 0.2})` : `rgba(255, 255, 255, ${star.opacity})`;
                 starsCtx.fill();
             }
             requestAnimationFrame(animateStars);
