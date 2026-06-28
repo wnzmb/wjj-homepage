@@ -13,11 +13,21 @@ body {
     align-items: center;
     justify-content: center;
     background: #0a0a0a;
-    background: linear-gradient(135deg, #0a0a1a, #1a0a2e);
-    transition: background 1s ease;
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     color: #ffffff;
     overflow: hidden;
+}
+
+body.animated-bg {
+    background: linear-gradient(135deg, var(--bg1), var(--bg2), var(--bg3));
+    background-size: 400% 400%;
+    animation: gradientShift 15s ease infinite;
+}
+
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
 }
 
 canvas {
