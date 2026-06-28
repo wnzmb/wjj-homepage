@@ -51,11 +51,11 @@
         const typewriterEl = document.getElementById('typewriter');
 
         const timeThemes = {
-            night:    { greeting: '夜深了', bg: 'bg/night.gif' },
-            morning:  { greeting: '早上好', bg: 'bg/morning.gif' },
-            afternoon:{ greeting: '下午好', bg: 'bg/afternoon.gif' },
-            evening:  { greeting: '晚上好', bg: 'bg/evening.gif' },
-            dusk:     { greeting: '晚上好', bg: 'bg/dusk.gif' },
+            night:    { greeting: '夜深了', colors: ['#0a0a2e', '#1a0a3e', '#0a1a3e'] },
+            morning:  { greeting: '早上好', colors: ['#ff9a9e', '#fecfef', '#fdfcfb'] },
+            afternoon:{ greeting: '下午好', colors: ['#a1c4fd', '#c2e9fb', '#e0f7fa'] },
+            evening:  { greeting: '晚上好', colors: ['#fa709a', '#fee140', '#ff9a76'] },
+            dusk:     { greeting: '晚上好', colors: ['#2d1b69', '#11998e', '#38ef7d'] },
         };
 
         function getTimeTheme() {
@@ -69,10 +69,14 @@
 
         const hour = new Date().getHours();
         const theme = getTimeTheme();
-        document.body.style.background = `url('${theme.bg}') center/cover no-repeat fixed`;
+        document.body.classList.add('animated-bg');
+        document.body.style.setProperty('--bg1', theme.colors[0]);
+        document.body.style.setProperty('--bg2', theme.colors[1]);
+        document.body.style.setProperty('--bg3', theme.colors[2]);
         greetingEl.textContent = theme.greeting + '，访客 👋';
 
-        starsCanvas.style.display = 'none';
+        const isLightTheme = (hour >= 6 && hour < 22);
+        starsCanvas.style.display = isLightTheme ? 'none' : 'block';
         
         const texts = ['Data Science & Development', 'Building something cool...', 'Always learning.'];
         let textIndex = 0, charIndex = 0, isDeleting = false;
