@@ -47,6 +47,11 @@
     </div>
 
     <script>
+        const canvas = document.getElementById('clickEffect');
+        const ctx = canvas.getContext('2d');
+        const starsCanvas = document.getElementById('starsCanvas');
+        const starsCtx = starsCanvas.getContext('2d');
+
         const greetingEl = document.getElementById('greeting');
         const typewriterEl = document.getElementById('typewriter');
 
@@ -100,11 +105,6 @@
             setTimeout(typeWriter, delay);
         }
         typeWriter();
-        
-        const canvas = document.getElementById('clickEffect');
-        const ctx = canvas.getContext('2d');
-        const starsCanvas = document.getElementById('starsCanvas');
-        const starsCtx = starsCanvas.getContext('2d');
         
         function resizeCanvas() {
             const w = window.innerWidth;
